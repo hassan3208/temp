@@ -22,6 +22,7 @@ import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import Favorites from "@/pages/Favorites";
 import Orders from "@/pages/Orders";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -44,7 +45,11 @@ const App = () => (
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/product/:id" element={<ProductDetail />} />
-                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/admin" element={
+                    <ProtectedRoute>
+                      <Admin />
+                    </ProtectedRoute>
+                  } />
                   <Route path="/favorites" element={<Favorites />} />
                   <Route path="/orders" element={<Orders />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

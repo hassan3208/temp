@@ -49,6 +49,7 @@ export default function Admin() {
   }, [loadUsersAndCarts]);
 
   useEffect(() => {
+    console.log("🧠 Admin mounted | Current user:", user);
     const handleCartChange = (event: Event) => {
       const detail = (event as CustomEvent<{ userId: string }>).detail;
       if (detail?.userId) {
@@ -69,7 +70,7 @@ export default function Admin() {
         <h1 className="font-serif text-3xl">Admin Access</h1>
         <p className="text-sm text-muted-foreground">Enter admin password to continue.</p>
         <div className="flex items-center gap-2">
-          <Input type="password" placeholder="Password" value={pass} onChange={(e) => setPass(e.target.value)} className="w-48" />
+          <Input type="password" placeholder="Password" value={pass} onChange={(e) => setPass(e.target.value)} className="w-48" onFocus={() => console.log("✳️ Password input focused")}/>
           <Button
             onClick={() => {
               if (pass.trim() === "4321") setUnlocked(true);
